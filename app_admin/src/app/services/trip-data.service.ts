@@ -9,11 +9,21 @@ export class TripDataService{
   constructor(private http: Http) {  }
 
   private apiBaseUrl = 'http://localhost:3000/api/';
+  private tripUrl = `${this.apiBaseUrl}trips/`;   //this is using back tick and might need to be single quote
+
+  public addTrip(formData: Trip): Promise<Trip> {
+    console.log('Inside TripDataService#addTrip');
+    return this.http  
+      .post(this.tripUrl, formData)
+      .toPromise()
+      .then(response => response.json() as Trip[])
+      .catch(this.handleError);
+  }
 
   public getTrips(): Promise<Trip[]> {
     console.log('Inside TripDataService#getTrips');
     return this.http
-      .get(`$(this.apiBaseUrl)trips`)
+      .get(this.tripUrl)
       .toPromise()
       .then(response => response.json() as Trip [])
       .catch(this.handleError);
