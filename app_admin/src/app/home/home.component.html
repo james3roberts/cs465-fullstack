@@ -1,0 +1,8 @@
+<div class="container" *ngIf="!isLoggedIn()">
+  <br/>
+  <h2>Please login to continue</h2>
+</div> 
+<div class="container" *ngIf="isLoggedIn()">
+  <br/>
+  <h2>Click "Trips" to see the current trip list</h2>
+</div> 
